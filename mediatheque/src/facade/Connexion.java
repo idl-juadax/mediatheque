@@ -128,7 +128,7 @@ public class Connexion {
 		return "";
 	}
 	
-	public UserModel checkUser(){
+	public UserModel checkUser(String identifiant, String password){
 		
 		UserModel user = null;
 		
