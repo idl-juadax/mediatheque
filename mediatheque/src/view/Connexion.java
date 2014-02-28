@@ -20,13 +20,13 @@ import javax.swing.border.MatteBorder;
 
 
 
-public class Fenetre extends JFrame {
+public class Connexion extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPasswordField passwordField;
 	private JTextField textField;
 	
-	public Fenetre() {
-		setTitle("Médiathèque - Accueil");
+	public Connexion() {
+		setTitle("Mediatheque - Accueil");
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
