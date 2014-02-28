@@ -34,7 +34,7 @@ public class Inscription extends JFrame {
 	private JPasswordField passwordField;
 	
 	public Inscription() {
-		setTitle("M��diath��que - Inscription");
+		setTitle("Mediatheque - Inscription");
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
