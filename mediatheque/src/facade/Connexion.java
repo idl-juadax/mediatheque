@@ -90,7 +90,7 @@ public class Connexion {
 		return lst;
 	}
 	
-	public UserModel checkUser (String usermail,String passwd){
+	public UserModel getUser (String usermail,String passwd){
 		
 		UserModel user = null;
 		
@@ -109,11 +109,13 @@ public class Connexion {
 				user.setPrenom(rs.getString("prenom"));
 				user.setAdresseEmail(rs.getString("email"));
 				user.setMotDePasse(rs.getString("password"));
+			}else{
+				user = null;
 			}
-			
 		}
 		catch (Exception e) {
 			System.out.println("Connexion.liste user erreur "+e.getMessage());
+			user = null;
 		}
 		try {if (rs !=null) rs.close();} catch (Exception e) {}
 		try {if (st !=null) st.close();} catch (Exception e) {}
@@ -121,9 +123,28 @@ public class Connexion {
 		return user;
 	}
 	
-	public String addUser(String identifiant, String password){
+	public String addUser(String nom,String prenom,String email, String password){
 		
-		return "";
+		String res = "erreur d ajout";
+		
+		Statement st = null;
+		int rs;
+		
+		String sql = "INSERT INTO users (nom,prenom,email,password) VALUES ('"+nom+"','"+prenom+"','"+email+"','"+password+"')";
+		
+		try {
+			st = connection.createStatement();
+			rs = st.executeUpdate(sql);
+			if(rs>0){
+				res = "ajout ok";			
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Connexion.liste user erreur "+e.getMessage());
+		}
+		try {if (st !=null) st.close();} catch (Exception e) {}
+						
+		return res;
 	}
 	
 	
@@ -133,8 +154,13 @@ public class Connexion {
 		cxn.ouvrir();
 		
 		System.out.println("Liste des users");
-		UserModel usr = cxn.checkUser("contact@julienKermarec.com","password");
+		UserModel usr = cxn.getUser("contact@julienKermarec.com","password");
 		System.out.println("Utilisateur = "+usr.getNom());
+		String nom ="leon";
+		String prenom ="axel";
+		String email ="toto@gg.com";
+		String password ="titi";
+		System.out.println(cxn.addUser(nom, prenom, email, password));
 		
 		cxn.fermer();
 	}
