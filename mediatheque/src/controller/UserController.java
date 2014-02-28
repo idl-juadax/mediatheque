@@ -16,8 +16,6 @@ public class UserController {
 		
 		UserModel user = null;
 		user = facade.checkUser(identifiant, password);
-		if(user != null)
-			new Accueil(user);
 		
 		return user;
 	}

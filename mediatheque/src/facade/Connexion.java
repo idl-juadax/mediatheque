@@ -92,7 +92,7 @@ public class Connexion {
 	
 	public UserModel checkUser (String usermail,String passwd){
 		
-		UserModel user = new UserModel();
+		UserModel user = null;
 		
 		Statement st = null;
 		ResultSet rs = null;
@@ -103,14 +103,12 @@ public class Connexion {
 			st = connection.createStatement();
 			rs = st.executeQuery(sql);
 			if(rs.first()){
+				user = new UserModel();
 				user.setId(Integer.parseInt(rs.getString("id")));
 				user.setNom(rs.getString("nom"));
 				user.setPrenom(rs.getString("prenom"));
 				user.setAdresseEmail(rs.getString("email"));
 				user.setMotDePasse(rs.getString("password"));
-			
-			}else{
-				user = null;
 			}
 			
 		}
