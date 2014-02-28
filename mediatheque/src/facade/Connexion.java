@@ -69,7 +69,7 @@ public class Connexion {
 		
 		try {
 			st = connection.createStatement();
-			/*rs = st.executeQuery(sql);
+			rs = st.executeQuery(sql);
 			
 			while (rs.next()) {
 				UserModel user = new UserModel();
@@ -79,7 +79,7 @@ public class Connexion {
 				user.setAdresseEmail(rs.getString("email"));
 				user.setMotDePasse(rs.getString("password"));
 				lst.add(user);
-			}*/
+			}
 		}
 		catch (Exception e) {
 			System.out.println("Connexion.liste user erreur "+e.getMessage());
@@ -90,15 +90,59 @@ public class Connexion {
 		return lst;
 	}
 	
+	public UserModel login (String usermail,String passwd){
+		
+		UserModel user = new UserModel();
+		
+		Statement st = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM users WHERE email ='"+usermail+"' AND password = '"+passwd+"'";
+		
+		try {
+			st = connection.createStatement();
+			rs = st.executeQuery(sql);
+			if(rs.first()){
+				user.setId(Integer.parseInt(rs.getString("id")));
+				user.setNom(rs.getString("nom"));
+				user.setPrenom(rs.getString("prenom"));
+				user.setAdresseEmail(rs.getString("email"));
+				user.setMotDePasse(rs.getString("password"));
+			
+			}else{
+				user = null;
+			}
+			
+		}
+		catch (Exception e) {
+			System.out.println("Connexion.liste user erreur "+e.getMessage());
+		}
+		try {if (rs !=null) rs.close();} catch (Exception e) {}
+		try {if (st !=null) st.close();} catch (Exception e) {}
+		
+		return user;
+	}
+	
+	public String addUser(String identifiant, String password){
+		
+		return "";
+	}
+	
+	public UserModel checkUser(){
+		
+		UserModel user = null;
+		
+		return user;
+	}
+	
+	
 	public static void main(String [] args) {
 		Connexion cxn = new Connexion();
 		cxn.ouvrir();
 		
 		System.out.println("Liste des users");
-		ArrayList <UserModel> lst = cxn.listerUsers();
-		for (UserModel livre2 : lst) {
-			System.out.println("titre = "+livre2.getNom());
-		}
+		UserModel usr = cxn.login("contact@julienKermarec.com","password");
+		System.out.println("Utilisateur = "+usr.getNom());
 		
 		cxn.fermer();
 	}
