@@ -2,8 +2,12 @@ package facade;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import model.UserModel;
 
 public class Connexion {
 
@@ -56,10 +60,45 @@ public class Connexion {
 	}
 
 	
+	public ArrayList<UserModel>listerUsers() {
+		ArrayList<UserModel> lst = new ArrayList<UserModel>();
+		Statement st = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from users";
+		
+		try {
+			st = connection.createStatement();
+			/*rs = st.executeQuery(sql);
+			
+			while (rs.next()) {
+				UserModel user = new UserModel();
+				user.setId(Integer.parseInt(rs.getString("id")));
+				user.setNom(rs.getString("nom"));
+				user.setPrenom(rs.getString("prenom"));
+				user.setAdresseEmail(rs.getString("email"));
+				user.setMotDePasse(rs.getString("password"));
+				lst.add(user);
+			}*/
+		}
+		catch (Exception e) {
+			System.out.println("Connexion.liste user erreur "+e.getMessage());
+		}
+		try {if (rs !=null) rs.close();} catch (Exception e) {}
+		try {if (st !=null) st.close();} catch (Exception e) {}
+
+		return lst;
+	}
+	
 	public static void main(String [] args) {
 		Connexion cxn = new Connexion();
 		cxn.ouvrir();
 		
+		System.out.println("Liste des users");
+		ArrayList <UserModel> lst = cxn.listerUsers();
+		for (UserModel livre2 : lst) {
+			System.out.println("titre = "+livre2.getNom());
+		}
 		
 		cxn.fermer();
 	}
