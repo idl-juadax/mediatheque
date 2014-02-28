@@ -4,11 +4,19 @@ import java.util.ArrayList;
 
 public class UserModel {
 	
+	private int id;
 	private String nom;
 	private String prenom;
 	private String adresseEmail;
 	private String motDePasse;
 	private ArrayList<EmpruntModel> emprunts = new ArrayList<EmpruntModel>();
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getNom() {
 		return nom;
@@ -44,7 +52,4 @@ public class UserModel {
 	public void setEmprunts(ArrayList<EmpruntModel> emprunts) {
 		this.emprunts = emprunts;
 	}
-	
-	
-	
 }

@@ -1,11 +1,19 @@
 package model;
 
 public class MediaModel {
-
+	
+	private int id;
 	private String duree;
 	private String type;
 	private String dateAjout;
 	private int status;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getDuree() {
 		return duree;
@@ -33,7 +41,5 @@ public class MediaModel {
 	}
 	public void setStatus(int status) {
 		this.status = status;
-	}
-	
-	
+	}	
 }
