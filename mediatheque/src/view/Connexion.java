@@ -112,7 +112,7 @@ public class Connexion extends JFrame {
 		panel_5.setBorder(new EmptyBorder(0, 0, 0, 0));
 		splitPane_4.setLeftComponent(panel_5);
 		
-		JLabel lblNewLabel = new JLabel(new ImageIcon("images/biblio_header.png"));
+		JLabel lblNewLabel = new JLabel(new ImageIcon("img/biblio_header.png"));
 		panel_5.add(lblNewLabel);
 		lblNewLabel.setBounds(0, 0, 270, 50); 
 

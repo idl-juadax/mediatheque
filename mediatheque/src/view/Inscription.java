@@ -34,7 +34,7 @@ public class Inscription extends JFrame {
 	private JPasswordField passwordField;
 	
 	public Inscription() {
-		setTitle("Médiathèque - Inscription");
+		setTitle("M��diath��que - Inscription");
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -63,7 +63,7 @@ public class Inscription extends JFrame {
 		panel_5.setBorder(new EmptyBorder(0, 0, 0, 0));
 		splitPane_4.setLeftComponent(panel_5);
 		
-		JLabel lblNewLabel = new JLabel(new ImageIcon("images/biblio_header.png"));
+		JLabel lblNewLabel = new JLabel(new ImageIcon("img/biblio_header.png"));
 		panel_5.add(lblNewLabel);
 		lblNewLabel.setBounds(0, 0, 270, 50); 
 
@@ -114,7 +114,7 @@ public class Inscription extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblNom = new JLabel("     Prénom     ");
+		JLabel lblNom = new JLabel("     Pr��nom     ");
 		panel_1.add(lblNom);
 		
 		textField = new JTextField();
