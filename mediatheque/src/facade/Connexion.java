@@ -90,7 +90,7 @@ public class Connexion {
 		return lst;
 	}
 	
-	public UserModel login (String usermail,String passwd){
+	public UserModel checkUser (String usermail,String passwd){
 		
 		UserModel user = new UserModel();
 		
@@ -128,12 +128,6 @@ public class Connexion {
 		return "";
 	}
 	
-	public UserModel checkUser(String identifiant, String password){
-		
-		UserModel user = null;
-		
-		return user;
-	}
 	
 	
 	public static void main(String [] args) {
@@ -141,7 +135,7 @@ public class Connexion {
 		cxn.ouvrir();
 		
 		System.out.println("Liste des users");
-		UserModel usr = cxn.login("contact@julienKermarec.com","password");
+		UserModel usr = cxn.checkUser("contact@julienKermarec.com","password");
 		System.out.println("Utilisateur = "+usr.getNom());
 		
 		cxn.fermer();
