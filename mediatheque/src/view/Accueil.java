@@ -10,6 +10,8 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
+import model.UserModel;
+
 public class Accueil extends JFrame {
 	/**
 	 * 
@@ -17,8 +19,11 @@ public class Accueil extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTable table;
 	private JTable table_1;
+	
+	private UserModel userModel = null;
 
-	public Accueil() {
+	public Accueil(UserModel user) {
+		userModel = user;
 		setTitle("Médiathèque - Tableau de bord");
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -62,8 +67,8 @@ public class Accueil extends JFrame {
 		table_1 = new JTable();
 		splitPane_3.setRightComponent(table_1);
 		
-		JLabel lblBonjourJulien = new JLabel("Bonjour Julien !");
-		splitPane.setLeftComponent(lblBonjourJulien);
+		JLabel lblBonjour = new JLabel("Bonjour "+userModel.getPrenom()+" "+userModel.getNom()+" !");
+		splitPane.setLeftComponent(lblBonjour);
 		setVisible(true);
 	}
 }

@@ -18,12 +18,20 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
+import controller.UserController;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 
 
 public class Connexion extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPasswordField passwordField;
 	private JTextField textField;
+	private JLabel LblInscription;
+	
+	private UserController userController = new UserController();
 	
 	public Connexion() {
 		setTitle("Mediatheque - Accueil");
@@ -67,10 +75,19 @@ public class Connexion extends JFrame {
 		splitPane_2.setRightComponent(panel_4);
 		
 		JButton btnJeMinscris = new JButton("Je m'inscris !");
+		btnJeMinscris.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String message = userController.inscription(textField.getText(), passwordField.getText());
+				LblInscription.setText(message);
+			}
+		});
 		btnJeMinscris.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
 		
 		btnJeMinscris.setMinimumSize(new Dimension(300,50));
 		panel_4.add(btnJeMinscris);
+		
+		LblInscription = new JLabel("");
+		panel_4.add(LblInscription);
 		
 		JSplitPane splitPane_3 = new JSplitPane();
 		splitPane_3.setBorder(new EmptyBorder(0, 0, 0, 0));
