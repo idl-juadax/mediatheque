@@ -1,11 +1,19 @@
 package model;
 
 public class EmpruntModel {
-
+	
+	private int id;
 	private MediaModel media;
 	private String duree;
 	private String dateDebutEmprunt;
 	private String dateFinEmprunt;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public MediaModel getMedia() {
 		return media;
