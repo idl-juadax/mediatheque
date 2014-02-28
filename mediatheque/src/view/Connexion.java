@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,10 +20,8 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
+import model.UserModel;
 import controller.UserController;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 
 
@@ -30,6 +30,7 @@ public class Connexion extends JFrame {
 	private JPasswordField passwordField;
 	private JTextField textField;
 	private JLabel LblInscription;
+	private JLabel lblLabelResultConnexion;
 	
 	private UserController userController = new UserController();
 	
@@ -46,10 +47,12 @@ public class Connexion extends JFrame {
 		}
 		/* GLOBAL */
 		final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds(screenSize.width/2 - 200, screenSize.height/2  - 180, 400, 360);
-		setSize(400, 360);
+		setBounds(screenSize.width/2 - 200, screenSize.height/2  - 180, 400, 400);
+		setSize(400, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+		
+		
 		
 		JSplitPane splitPane_1 = new JSplitPane();
 		getContentPane().add(splitPane_1, BorderLayout.SOUTH);
@@ -99,7 +102,7 @@ public class Connexion extends JFrame {
 		panel.setBorder(new EmptyBorder(5, 0, 0, 0));
 		splitPane_3.setLeftComponent(panel);
 		
-		JLabel lblIdentifiant = new JLabel("  Identifiant  ");
+		JLabel lblIdentifiant = new JLabel("   Email   ");
 		panel.add(lblIdentifiant);
 		
 		textField = new JTextField();
@@ -107,17 +110,37 @@ public class Connexion extends JFrame {
 		panel.add(textField);
 		textField.setColumns(20);
 		
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+
+		splitPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		splitPane.setDividerSize(0);
+		
+		
+		splitPane_3.setRightComponent(splitPane);
+		
+		JSplitPane splitPane_5 = new JSplitPane();
+		splitPane_5.setOrientation(JSplitPane.VERTICAL_SPLIT);
+
+		splitPane_5.setBorder(new EmptyBorder(0, 0, 0, 0));
+		splitPane_5.setDividerSize(0);
+		splitPane.setRightComponent(splitPane_5);
+		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new EmptyBorder(0, 0, 5, 0));
-		splitPane_3.setRightComponent(panel_3);
+		panel_3.setBorder(new EmptyBorder(0, 0, 0, 0));
+		splitPane_5.setLeftComponent(panel_3);
+	
 		
-		JLabel lblMotDePasse = new JLabel("Mot de passe");
-		panel_3.add(lblMotDePasse);
+		JPanel panel_7 = new JPanel();
+		panel_7.setBorder(new EmptyBorder(0, 0, 0, 0));
+		splitPane_5.setRightComponent(panel_7);
 		
-		passwordField = new JPasswordField();
-		passwordField.setToolTipText("Mot de passe");
-		passwordField.setColumns(20);
-		panel_3.add(passwordField);
+		lblLabelResultConnexion = new JLabel("");
+		panel_7.add(lblLabelResultConnexion);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new EmptyBorder(0, 0, 0, 0));
+		splitPane.setLeftComponent(panel_2);
 		
 		JSplitPane splitPane_4 = new JSplitPane();
 		getContentPane().add(splitPane_4, BorderLayout.NORTH);
@@ -141,5 +164,28 @@ public class Connexion extends JFrame {
 		JLabel lblConnexion = new JLabel("Connexion");
 		panel_6.add(lblConnexion);
 		setVisible(true);
+		
+
+		JLabel lblMotDePasse = new JLabel("Mot de passe");
+		panel_2.add(lblMotDePasse);
+		
+		passwordField = new JPasswordField();
+		passwordField.setToolTipText("Mot de passe");
+		passwordField.setColumns(20);
+		panel_2.add(passwordField);
+		
+		
+		JButton btnNewButton = new JButton("Connexion");
+		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				UserModel user = userController.connexion(textField.getText(), passwordField.getText());
+				if(user == null)
+					lblLabelResultConnexion.setText("Mauvais identifiants / mot de passe");
+				else
+					lblLabelResultConnexion.setText("Connexion réussie");
+			}
+		});
+		panel_3.add(btnNewButton);
 	}
 }
