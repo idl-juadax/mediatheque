@@ -1,24 +1,24 @@
 package controller;
 
-public class UserController {
+import view.Accueil;
+import model.UserModel;
+import facade.Connexion;
 
-	public boolean addUser(){
-		
-		return false;
+public class UserController {
+	
+	Connexion facade = new Connexion();
+
+	public String inscription(String identifiant, String password){
+		return facade.addUser(identifiant, password);
 	}
 	
-	public boolean deleteUser(){
+	public UserModel connexion(String identifiant, String password){
 		
-		return false;
-	}
-	
-	public boolean updateUser(){
+		UserModel user = null;
+		user = facade.checkUser(identifiant, password);
+		if(user != null)
+			new Accueil(user);
 		
-		return false;
-	}
-	
-	public static boolean checkUser(){
-		
-		return false;
+		return user;
 	}
 }
