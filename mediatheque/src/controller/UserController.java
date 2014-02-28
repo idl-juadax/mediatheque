@@ -1,7 +1,7 @@
 package controller;
 
-import view.Accueil;
 import model.UserModel;
+import view.Accueil;
 import facade.Connexion;
 
 public class UserController {
