@@ -15,7 +15,7 @@ public class UserController {
 	public UserModel connexion(String identifiant, String password){
 		
 		UserModel user = null;
-		user = facade.checkUser(identifiant, password);
+		user = facade.getUser(identifiant, password);
 		if(user != null)
 			new Accueil(user);
 		
